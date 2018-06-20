@@ -1,24 +1,32 @@
-import React,{Component} from "react"
-import {store} from '../redux/index'
-// import reducers from '../redux/reducers'
-// import {store} from '../redux'
-import {jia,jian} from '../redux/actions'
-export default class Counter extends Component {
-    _jia = () => {
-        let num  = document.getElementsByClassName('App-title')[0].innerText - 0
-        store.dispatch(jia(num))
-    }
-    _jian = () => {
-        let num  = document.getElementsByClassName('App-title')[0].innerText - 0
-        store.dispatch(jian(num))
-    }
+import React,{Component} from 'react'
+import{connect} from 'react-redux'
+import { increaseAction,jianAction } from '../store/actions';
+class Counter extends Component {
     render() {
-        return (
+        console.log(this.props)
+        let {value,onIncreaseClick,onJianClick} = this.props
+        return(
             <div>
-                <span></span>
-                <button onClick={this._jia}>增加</button>
-                <button onClick={this._jian}>减少</button>  
+                <span>{value}</span>
+                <button onClick={onIncreaseClick}>增加</button>
+                <button onClick={onJianClick}>减少</button>
             </div>
         )
     }
 }
+function mapStateToProps(state) { 
+    console.log(state,'11111111111111')
+    return {
+        value:state.count
+    }
+ }
+ function mapDispatchToProps() {
+    (dispatch) => ({
+        onIncreaseClick:() => dispatch(increaseAction),
+        onJianClick:() => dispatch(jianAction)
+    })
+ }
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Counter)

@@ -3,7 +3,7 @@ import Home from './components/home'
 import Counter from './components/counter'
 import logo from './logo.svg';
 import './App.css';
-import { store } from './redux'
+
 class App extends Component {
   render() {
     return (
@@ -11,8 +11,7 @@ class App extends Component {
 
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-
-          <h1 className="App-title">{store.getState()}</h1>
+          <h1 className="App-title">666 React</h1>
         </header>
         <Home />
         <Counter />
