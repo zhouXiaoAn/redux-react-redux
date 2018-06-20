@@ -14,19 +14,23 @@ class Counter extends Component {
         )
     }
 }
-function mapStateToProps(state) { 
-    console.log(state,'11111111111111')
-    return {
-        value:state.count
-    }
- }
- function mapDispatchToProps() {
-    (dispatch) => ({
-        onIncreaseClick:() => dispatch(increaseAction),
-        onJianClick:() => dispatch(jianAction)
-    })
- }
+// function mapStateToProps(state) { 
+//     console.log(state,'11111111111111')
+//     return {
+//         value:state.count
+//     }
+//  }
+//  function mapDispatchToProps() {
+//     (dispatch) => ({
+//         onIncreaseClick:() => dispatch(increaseAction),
+//         onJianClick:() => dispatch(jianAction)
+//     })
+//  }
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+    
+    state => ({value:state.count}),
+    dispatch => ({
+        onIncreaseClick: () => dispatch(increaseAction),
+        onJianClick: () => dispatch(jianAction)
+    })
 )(Counter)
